@@ -900,7 +900,7 @@
         .on("click.fb", "[data-fancybox-zoom]", function (e) {
           // Click handler for zoom button
           //self[self.isScaledDown() ? "scaleToActual" : "scaleToFit"]();
-          self.zoomImage();
+          self._zoomImage(e);
         });
 
       // Handle page scrolling and browser resizing
@@ -1256,6 +1256,10 @@
     // ==============================================
 
     zoomImage: function (x, y, duration) {
+      return this._zoomImage(null, x, y, duration);
+    },
+
+    _zoomImage: function (e, x, y, duration) {
       var self = this,
         current = self.current,
         $content = current.$content,
@@ -1266,10 +1270,10 @@
         imgPos   = $.fancybox.getTranslate($content),
         posX,
         posY,
-        curScale = imgPos.width/current.width,
+        currentScale = imgPos.width/current.width,
         zoomScale= self.opts.oneZoomScale;
 
-      if (! self.isZoomable()) return self.scaleToFit();
+      if (e.shiftKey) return self.scaleToFit();
 
       if (self.isAnimating || self.isMoved() || !$content || !(current.type == "image" && current.isLoaded && !current.hasError)) {
         return;
@@ -1285,7 +1289,22 @@
       imgPos.top -= $.fancybox.getTranslate(current.$slide).top;
       imgPos.left -= $.fancybox.getTranslate(current.$slide).left;
 
-      if (curScale < 1) {
+      if (e.ctrlKey && current.width && current.height) {
+      	// fit to canvas
+        var zx = canvasWidth  / current.width;
+        var zy = canvasHeight / current.height;
+        zoomScale=1;
+        if (zx!=0 && (zx<zy || zx==zy)) {
+        	zoomScale = zx/currentScale;
+        	newImgWidth  = canvasWidth;
+        	newImgHeight = current.height * zx;
+        } else if (zy!=0 && zy<zx) {
+        	zoomScale = zy/currentScale;
+        	newImgWidth  = current.width * zy;
+        	newImgHeight = canvasHeight;
+        }
+
+      } else if (currentScale < 1) {
         newImgWidth  = current.width;
         newImgHeight = current.height;
         zoomScale    = newImgWidth / imgPos.width;

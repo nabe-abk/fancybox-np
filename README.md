@@ -14,7 +14,11 @@ It is a patch applied to the original.
 # Patch lists
 
 - When the image is smaller than the display area, it can be enlarged.
+- When viewing an image, press "SHIFT + click" to display it at full size.
+- When viewing an image, press "CTRL + zoom" to enlarge it to fill the screen.
 
 # パッチリスト
 
 - 表示領域より画像が小さいとき、画像を拡大できるようにしました。
+- 画像表示時、"SHIFT + click"で原寸大表示。
+- 画像表示時、"CTRL  + click"で画面いっぱいに拡大表示。

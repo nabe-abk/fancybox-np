@@ -1273,7 +1273,7 @@
         currentScale = imgPos.width/current.width,
         zoomScale= self.opts.oneZoomScale;
 
-      if (e.shiftKey) return self.scaleToFit();
+      if (!self.isZoomable() || e.shiftKey) return self.scaleToFit();
 
       if (self.isAnimating || self.isMoved() || !$content || !(current.type == "image" && current.isLoaded && !current.hasError)) {
         return;
@@ -1701,7 +1701,7 @@
 
       $container.toggleClass("fancybox-is-zoomable", isZoomable);
 
-      $("[data-fancybox-zoom]").prop("disabled", !isZoomable);
+      // $("[data-fancybox-zoom]").prop("disabled", !isZoomable);
 
       if (
         isZoomable &&

@@ -1269,9 +1269,7 @@
         curScale = imgPos.width/current.width,
         zoomScale= self.opts.oneZoomScale;
 
-      if (self.canPan(imgPos.width, imgPos.height) ) {
-      	return self.scaleToFit();
-      }
+      if (! self.isZoomable()) return self.scaleToFit();
 
       if (self.isAnimating || self.isMoved() || !$content || !(current.type == "image" && current.isLoaded && !current.hasError)) {
         return;
@@ -1680,19 +1678,19 @@
 
       canPan = self.canPan(nextWidth, nextHeight);
 
-      isZoomable = canPan ? true : self.isZoomable();
+      isZoomable = self.isZoomable();
 
       $container.toggleClass("fancybox-is-zoomable", isZoomable);
 
       $("[data-fancybox-zoom]").prop("disabled", !isZoomable);
 
-      if (canPan) {
-        $container.addClass("fancybox-can-pan");
-      } else if (
+      if (
         isZoomable &&
         (current.opts.clickContent === "zoom" || ($.isFunction(current.opts.clickContent) && current.opts.clickContent(current) == "zoom"))
       ) {
         $container.addClass("fancybox-can-zoomIn");
+      } else if (canPan) {
+        $container.addClass("fancybox-can-pan");
       } else if (current.opts.touch && (current.opts.touch.vertical || self.group.length > 1) && current.contentType !== "video") {
         $container.addClass("fancybox-can-swipe");
       }
@@ -1700,31 +1698,17 @@
 
     // Check if current slide is zoomable
     // ==================================
-
-    isZoomable: function () {
-      return true;
-/*
-      var self = this,
+    isZoomable: function (width, height) {
+        var self = this,
         current = self.current,
-        fitPos;
+        canvas = $.fancybox.getTranslate(current.$slide),
+        pos    = $.fancybox.getTranslate(current.$content);
 
-      // Assume that slide is zoomable if:
-      //   - image is still loading
-      //   - actual size of the image is smaller than available area
-      if (current && !self.isClosing && current.type === "image" && !current.hasError) {
-        if (!current.isLoaded) {
-          return true;
-        }
+        const max = self.opts.maxZoomScale;
 
-        fitPos = self.getFitPos(current);
-
-        if (fitPos && (current.width > fitPos.width || current.height > fitPos.height)) {
-          return true;
-        }
-      }
-
-      return false;
-*/
+        if ((pos.width/current.width) < max && (pos.height/current.height) < max) return true;
+        if (pos.width < canvas.width && pos.height < canvas.height) return true;
+        return false;
     },
 
     // Check if current image dimensions are smaller than actual
@@ -1768,11 +1752,7 @@
         }
 
         if (pos && rez) {
-          var max = self.opts.maxZoomScale;
-          rez = (pos.width/current.width) >= max || (pos.height/current.height) >= max;
-
-          const canvas = $.fancybox.getTranslate(current.$slide);
-          if (pos.width < canvas.width && pos.height < canvas.height) rez=false;
+          rez = Math.abs(pos.width - rez.width) > 1.5 || Math.abs(pos.height - rez.height) > 1.5;
         }
       }
 

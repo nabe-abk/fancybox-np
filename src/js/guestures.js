@@ -834,10 +834,10 @@
 
         case "zoom":
           if (current.type == "image" && (current.isLoaded || current.$ghost)) {
-            if (instance.canPan()) {
-              instance.scaleToFit();
-            } else if (instance.isZoomable()) {
+            if (instance.isZoomable()) {
               instance.zoomImage(tapX, tapY);
+            } else if (instance.canPan()) {
+              instance.scaleToFit();
             } else if (instance.group.length < 2) {
               instance.close(self.startEvent);
             }

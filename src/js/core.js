@@ -1259,7 +1259,7 @@
       return this._zoomImage(null, x, y, duration);
     },
 
-    _zoomImage: function (e, x, y, duration) {
+    _zoomImage: function (e, x, y, duration, zoomScale) {
       var self = this,
         current = self.current,
         $content = current.$content,
@@ -1271,7 +1271,7 @@
         posX,
         posY,
         currentScale = imgPos.width/current.width,
-        zoomScale= self.opts.oneZoomScale;
+        zoomScale= zoomScale ? zoomScale : self.opts.oneZoomScale;
 
       if (e.shiftKey) return self.scaleToFit();
 
@@ -1304,7 +1304,7 @@
         	newImgHeight = canvasHeight;
         }
 
-      } else if (currentScale < 1) {
+      } else if (currentScale < 1 || currentScale*zoomScale < 1) {
         newImgWidth  = current.width;
         newImgHeight = current.height;
         zoomScale    = newImgWidth / imgPos.width;

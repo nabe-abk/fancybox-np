@@ -899,8 +899,8 @@
         })
         .on("click.fb", "[data-fancybox-zoom]", function (e) {
           // Click handler for zoom button
-          //self[self.isScaledDown() ? "scaleToActual" : "scaleToFit"]();
-          self._zoomImage(e);
+          if (self.isZoomable()) self._zoomImage(e);
+          else self.scaleToFit();
         });
 
       // Handle page scrolling and browser resizing
@@ -1273,7 +1273,7 @@
         currentScale = imgPos.width/current.width,
         zoomScale= self.opts.oneZoomScale;
 
-      if (!self.isZoomable() || e.shiftKey) return self.scaleToFit();
+      if (e.shiftKey) return self.scaleToFit();
 
       if (self.isAnimating || self.isMoved() || !$content || !(current.type == "image" && current.isLoaded && !current.hasError)) {
         return;

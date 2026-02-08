@@ -770,15 +770,13 @@
 
     // Reset scalex/scaleY values; this helps for perfomance and does not break animation
     $.fancybox.setTranslate(self.$content, reset);
-
-    if (newWidth < self.canvasWidth && newHeight < self.canvasHeight) {
+    if (newWidth < current.width && newHeight < current.height) {
       self.instance.scaleToFit(150);
-    } else if (newWidth > current.width || newHeight > current.height) {
-      self.instance.zoomImage(self.centerPointStartX, self.centerPointStartY, 150);
     } else {
-      newPos = self.limitPosition(newOffsetX, newOffsetY, newWidth, newHeight);
+      self.instance.zoomImage(self.centerPointStartX, self.centerPointStartY, 150, 1);
 
-      $.fancybox.animate(self.$content, newPos, 150);
+      //newPos = self.limitPosition(newOffsetX, newOffsetY, newWidth, newHeight);
+      //$.fancybox.animate(self.$content, newPos, 150);
     }
   };
 

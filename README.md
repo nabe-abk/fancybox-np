@@ -17,6 +17,7 @@ It is a patch applied to the original.
 - When viewing an image, press "SHIFT + click" to display it at full size.
 - When viewing an image, press "CTRL + zoom" to enlarge it to fill the screen.
 - Changed mouse wheel operation to zoom in and out of images.
+- Enables gestures to enlarge images to a size smaller than the screen size.
 
 # パッチリスト
 
@@ -24,3 +25,4 @@ It is a patch applied to the original.
 - 画像表示時、"SHIFT + click"で原寸大表示。
 - 画像表示時、"CTRL  + click"で画面いっぱいに拡大表示。
 - マウスホイール操作を画像拡大・縮小機能に変更。
+- 画面サイズ未満の画像サイズへの拡大ジェスチャー動作を可能に。

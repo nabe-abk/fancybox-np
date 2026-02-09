@@ -16,21 +16,47 @@
 <script defer src="../src/js/thumbs.js"></script>
 <script defer src="../src/js/hash.js"></script>
 <script defer src="../src/js/wheel.js"></script>
-	<title>fancybox-np test</title>
+	<title>Fancybox-np test</title>
 <style>
 a {
 	outline: none;
 }
+.images a {
+	display: inline-block;
+	vertical-align: middle;
+}
 </style>
 </head>
 <body>
-<h1>fancybox-np test</h1>
+<h1>Fancybox-np</h1>
 
-<div>
+<p id="lang-en">This software is a JavaScript image gallery software and is a fork of <a href="https://github.com/fancyapps/fancybox">Fancybox v3.5.7</a>.</p>
+
+<p id="lang-ja">このソフトはJavaScriptによる画像ギャラリーソフトであり、<a href="https://github.com/fancyapps/fancybox">Fancybox v3.5.7</a> のフォークです。</p>
+
+<ul>
+		<li>Download: <a href="https://github.com/nabe-abk/fancybox-np">https://github.com/nabe-abk/fancybox-np</a></li>
+		<li>Require: jQuery</li>
+		<li>GPL-3.0 license</li>
+		<li><a href="./fancybox3.5.7-doc.html">Fancybox v3.5.7 document</a></li>
+</ul>
+
+
+<h2>Demo</h2>
+<div class="images">
 	<a href="img1.jpg" data-fancybox="images" data-caption="caption1"><img src="img1.jpg" width="128" alt=""></a>
 	<a href="img2.png" data-fancybox="images" data-caption="caption2"><img src="img2.png" width="128" alt=""></a>
 	<a href="img3.png" data-fancybox="images"><img src="img3.png" width="128" alt=""></a>
+	<a href="img4.jpg" data-fancybox="images"><img src="img4.jpg" height="128" alt=""></a>
 </div>
+
+<script>
+//------------------------------------------------------------------------------
+if (window.navigator.language == 'ja') {
+	document.getElementById('lang-en').style.display = 'none';
+	document.getElementById('lang-ja').style.display = '';
+}
+</script>
 
 </body>
 </html>

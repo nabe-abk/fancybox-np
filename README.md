@@ -19,6 +19,7 @@ This is an expansion of the original.
 - When viewing an image, press "CTRL + zoom" to enlarge it to fill the screen.
 - Changed mouse wheel operation to zoom in and out of images.
 - Enables gestures to enlarge images to a size smaller than the screen size.
+- Change default mobile options. Disable "dblclickSlide" and change "clickSlide" to "close".
 
 # パッチリスト
 
@@ -27,6 +28,7 @@ This is an expansion of the original.
 - 画像表示時、"CTRL  + click"で画面いっぱいに拡大表示。
 - マウスホイール操作を画像拡大・縮小機能に変更。
 - 画面サイズ未満の画像サイズへの拡大ジェスチャー動作を可能に。
+- モバイルの標準オプションを変更。画像外ダブルクリック（dblclickSlide）による拡大を無効化し、画像外クリック（clickSlide）の動作を閉じる（close）に変更。
 
 # Expansion options
 

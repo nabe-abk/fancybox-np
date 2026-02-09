@@ -768,7 +768,7 @@
       scaleY: 1
     };
 
-    // Reset scalex/scaleY values; this helps for perfomance and does not break animation
+    // Reset scaleX/scaleY values; this helps for perfomance and does not break animation
     $.fancybox.setTranslate(self.$content, reset);
     if (newWidth < current.width && newHeight < current.height) {
       self.instance.scaleToFit(150);

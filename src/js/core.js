@@ -1256,8 +1256,8 @@
     // zoom image
     // ==============================================
 
-    zoomImage: function (x, y, duration) {
-      return this._zoomImage(null, x, y, duration);
+    zoomImage: function (x, y, duration, zoomScale) {
+      return this._zoomImage({}, x, y, duration, zoomScale);
     },
 
     _zoomImage: function (e, x, y, duration, zoomScale) {
@@ -1368,6 +1368,7 @@
           self.isAnimating = false;
         }
       );
+
 
       // Stop slideshow
       if (self.SlideShow && self.SlideShow.isActive) {
@@ -1767,12 +1768,11 @@
     canPan: function (nextWidth, nextHeight) {
       var self = this,
         current = self.current,
+        canvas = $.fancybox.getTranslate(current.$slide),
         pos = null,
-        rez = false;
+        ret = false;
 
       if (current.type === "image" && (current.isComplete || (nextWidth && nextHeight)) && !current.hasError) {
-        rez = self.getFitPos(current);
-
         if (nextWidth !== undefined && nextHeight !== undefined) {
           pos = {
             width: nextWidth,
@@ -1782,12 +1782,11 @@
           pos = $.fancybox.getTranslate(current.$content);
         }
 
-        if (pos && rez) {
-          rez = Math.abs(pos.width - rez.width) > 1.5 || Math.abs(pos.height - rez.height) > 1.5;
+        if (pos) {
+          ret = canvas.width < pos.width || canvas.height < pos.height;
         }
       }
-
-      return rez;
+      return ret;
     },
 
     // Load content into the slide
@@ -2377,6 +2376,7 @@
 
       slide.isLoading = false;
       slide.isLoaded = true;
+      slide.isComplete = true;	// set default value
 
       self.trigger("afterLoad", slide);
 

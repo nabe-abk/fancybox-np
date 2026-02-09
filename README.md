@@ -1,8 +1,8 @@
 # Fancybox-np
 
-This repository is a fork of [fancybox v3.5.7](https://github.com/fancyapps/fancybox).
+This is gallery software using JavaScript, forked from [Fancybox v3.5.7](https://github.com/fancyapps/fancybox).
 
-This is an expansion of the original.
+This is an expansion of the original. [Demo page](https://nabe-abk.github.io/fancybox-np/).
 
 # Install
 

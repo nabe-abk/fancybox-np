@@ -1292,7 +1292,26 @@
       imgPos.top -= $.fancybox.getTranslate(current.$slide).top;
       imgPos.left -= $.fancybox.getTranslate(current.$slide).left;
 
-      if (e.ctrlKey && current.width && current.height) {
+      newImgWidth  = imgPos.width  * zoomScale;
+      newImgHeight = imgPos.height * zoomScale;
+
+      // check minimum limit
+      var fit_to_canvas;
+      if (canvasWidth < current.width || canvasHeight < current.height) {
+      	 // image size exceeds canvas size.
+         if (newImgWidth < canvasWidth && newImgHeight < canvasHeight) {
+           fit_to_canvas = true;
+         }
+      } else {
+      	 // The image size fits within the canvas size.
+      	 if (newImgWidth < current.width || newImgHeight < current.height) {
+           newImgWidth  = current.width;
+           newImgHeight = current.height;
+           zoomScale    = newImgWidth / imgPos.width;
+         }
+      }
+
+      if (fit_to_canvas || e.ctrlKey && current.width && current.height) {
       	// fit to canvas
         var zx = canvasWidth  / current.width;
         var zy = canvasHeight / current.height;
@@ -1306,14 +1325,6 @@
         	newImgWidth  = current.width * zy;
         	newImgHeight = canvasHeight;
         }
-
-      } else if (currentScale < 1 || currentScale*zoomScale < 1) {
-        newImgWidth  = current.width;
-        newImgHeight = current.height;
-        zoomScale    = newImgWidth / imgPos.width;
-      } else {
-        newImgWidth  = imgPos.width  * zoomScale;
-        newImgHeight = imgPos.height * zoomScale;
       }
 
       // Get center position for original image

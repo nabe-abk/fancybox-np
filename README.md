@@ -51,4 +51,6 @@ This is an expansion of the original.
     // マウスホイール操作時の基本倍率
     wheelScale: 1.25,
 ```
+# Basic options
 
+See [Fancybox v3.5.7 original document](https://nabe-abk.github.io/fancybox-np/fancybox3.5.7-doc.html).

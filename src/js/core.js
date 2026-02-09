@@ -900,7 +900,7 @@
         })
         .on("click.fb", "[data-fancybox-zoom]", function (e) {
           // Click handler for zoom button
-          if (self.isZoomable()) self._zoomImage(e);
+          if (self.isZoomableEvent(e)) self._zoomImage(e);
           else self.scaleToFit();
         });
 
@@ -1258,6 +1258,11 @@
 
     zoomImage: function (x, y, duration, zoomScale) {
       return this._zoomImage({}, x, y, duration, zoomScale);
+    },
+
+    isZoomableEvent: function(e, w, h) {	// zoomable with event condition
+    	    if (e.shiftKey || e.ctrlKey) return true;
+    	    return this.isZoomable(w,h);
     },
 
     _zoomImage: function (e, x, y, duration, zoomScale) {
@@ -1708,9 +1713,8 @@
 
       $container.removeClass("fancybox-is-zoomable fancybox-can-zoomIn fancybox-can-zoomOut fancybox-can-swipe fancybox-can-pan");
 
-      canPan = self.canPan(nextWidth, nextHeight);
-
-      isZoomable = self.isZoomable();
+      canPan     = self.canPan(nextWidth, nextHeight);
+      isZoomable = self.isZoomable(nextWidth, nextHeight);
 
       $container.toggleClass("fancybox-is-zoomable", isZoomable);
 
@@ -1736,10 +1740,13 @@
         canvas = $.fancybox.getTranslate(current.$slide),
         pos    = $.fancybox.getTranslate(current.$content);
 
+        width  = (width  === undefined) ? pos.width  : width;
+        height = (height === undefined) ? pos.height : height;
+
         const max = self.opts.maxZoomScale;
 
-        if ((pos.width/current.width) < max && (pos.height/current.height) < max) return true;
-        if (pos.width < canvas.width && pos.height < canvas.height) return true;
+        if ((width/current.width) < max && (height/current.height) < max) return true;
+        if (width < canvas.width && height < canvas.height) return true;
         return false;
     },
 

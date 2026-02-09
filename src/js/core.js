@@ -362,12 +362,10 @@
         return current.type === "image" ? "toggleControls" : false;
       },
       clickSlide: function (current, event) {
-        return current.type === "image" ? "toggleControls" : "close";
+        return 'close';
+      //  return current.type === "image" ? "toggleControls" : "close";
       },
       dblclickContent: function (current, event) {
-        return current.type === "image" ? "zoom" : false;
-      },
-      dblclickSlide: function (current, event) {
         return current.type === "image" ? "zoom" : false;
       }
     },

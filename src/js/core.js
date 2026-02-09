@@ -292,6 +292,9 @@
     // If 'auto' - enabled for images only
     wheel: "auto",
 
+    // Mousewheel zoom scale
+    wheelScale: 1.25,
+
     // Callbacks
     //==========
 

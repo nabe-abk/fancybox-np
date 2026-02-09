@@ -39,8 +39,11 @@
 
         prevTime = currTime;
 
-        // instance[(-e.deltaY || -e.deltaX || e.wheelDelta || -e.detail) < 0 ? "next" : "previous"]();
-        instance._zoomImage(e, undefined, undefined, undefined, e.wheelDelta<0 ? 0.75**cnt : 1.25**cnt);
+	const delta = -e.deltaX || -e.deltaY || e.wheelDelta || -e.detail;
+        var   scale = current.opts.wheelScale;
+
+        // instance[delta < 0 ? "next" : "previous"]();
+        instance._zoomImage(e, undefined, undefined, undefined, delta<0 ? (1/scale)**cnt : scale**cnt);
         cnt=0;
         
       });

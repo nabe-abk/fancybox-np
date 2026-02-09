@@ -1,7 +1,8 @@
 # Fancybox-np
 
 This repository is a fork of [fancybox v3.5.7](https://github.com/fancyapps/fancybox).
-It is a patch applied to the original.
+
+This is an expansion of the original.
 
 # Install
 
@@ -26,3 +27,26 @@ It is a patch applied to the original.
 - 画像表示時、"CTRL  + click"で画面いっぱいに拡大表示。
 - マウスホイール操作を画像拡大・縮小機能に変更。
 - 画面サイズ未満の画像サイズへの拡大ジェスチャー動作を可能に。
+
+# Expansion options
+
+```js
+    // Zoom scale
+    oneZoomScale: 2,
+    maxZoomScale: 8,	// Gesture zoom ignores this value
+
+    // Mousewheel zoom scale
+    wheelScale: 1.25,
+```
+
+# 追加のオプション
+
+```js
+    // ズーム設定
+    oneZoomScale: 2,
+    maxZoomScale: 8,	// ジェスチャーによる拡大は最大値を無視する
+
+    // マウスホイール操作時の基本倍率
+    wheelScale: 1.25,
+```
+

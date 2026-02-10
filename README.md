@@ -24,7 +24,7 @@ This is gallery software using JavaScript, forked from [Fancybox v3.5.7](https:/
 
 # パッチリスト
 
-- 表示領域より画像が小さいとき、画像を拡大できるようにしました。
+- 表示領域より画像が小さいときでも、画像を拡大可能に。
 - 画像表示時、"SHIFT + click"で原寸大表示。
 - 画像表示時、"CTRL  + click"で画面いっぱいに拡大表示。
 - マウスホイール操作を画像拡大・縮小機能に変更。

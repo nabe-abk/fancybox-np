@@ -2,7 +2,7 @@
 
 This is gallery software using JavaScript, forked from [Fancybox v3.5.7](https://github.com/fancyapps/fancybox).
 
-- [Demo page](https://nabe-abk.github.io/fancybox-np/).
+- [Demo page](https://nabe-abk.github.io/fancybox-np/)
 - [Download](https://github.com/nabe-abk/fancybox-np/archive/refs/heads/main.zip)
 
 # Install

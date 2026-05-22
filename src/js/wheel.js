@@ -16,9 +16,11 @@
         var current = instance.current,
           currTime = new Date().getTime();
 
+/*
         if (instance.group.length < 2 || current.opts.wheel === false || (current.opts.wheel === "auto" && current.type !== "image")) {
           return;
         }
+*/
 
         e.preventDefault();
         e.stopPropagation();
